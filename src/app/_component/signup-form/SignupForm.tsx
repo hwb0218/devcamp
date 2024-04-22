@@ -21,7 +21,7 @@ export default function SignupForm() {
   });
 
   const onSubmit = (values: Schema) => {
-    console.log(values);
+    alert(JSON.stringify(values, null, 4));
   };
 
   return (
