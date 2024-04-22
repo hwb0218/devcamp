@@ -8,10 +8,5 @@
   "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "none",
-  "useTabs": false,
-  "overrides": [
-    {
-      "files": ["*.html", "*.ts", "*.tsx", "*.json", "*.yml"]
-    }
-  ]
+  "useTabs": false
 }
