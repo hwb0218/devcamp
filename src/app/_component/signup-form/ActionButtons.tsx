@@ -8,11 +8,12 @@ import { Schema } from "../../../schema/signup";
 
 interface Props {
   form: UseFormReturn<Schema>;
+  step: number;
   setStep: Dispatch<SetStateAction<number>>;
 }
 
-export default function ActionButtons({ form, setStep }: Props) {
-  const handleClick = () => {
+export default function ActionButtons({ form, step, setStep }: Props) {
+  const handleClickNextStep = () => {
     const fields = ["username", "email", "phoneNumber", "role"] as const;
     form.trigger(fields);
 
@@ -26,14 +27,26 @@ export default function ActionButtons({ form, setStep }: Props) {
     }
   };
 
+  const handleClickPrevStep = () => {
+    setStep(0);
+  };
+
   return (
     <div className="flex gap-2">
-      <Button type="button" onClick={handleClick}>
-        다음 단계로
-        <ArrowRight className="w-4 h-4 ml-2" />{" "}
-      </Button>
-      <Button>계정 등록하기</Button>
-      <Button variant="ghost">이전 단계로</Button>
+      {step === 0 && (
+        <Button type="button" onClick={handleClickNextStep}>
+          다음 단계로
+          <ArrowRight className="w-4 h-4 ml-2" />
+        </Button>
+      )}
+      {step === 1 && (
+        <>
+          <Button type="submit">계정 등록하기</Button>
+          <Button variant="ghost" onClick={handleClickPrevStep}>
+            이전 단계로
+          </Button>
+        </>
+      )}
     </div>
   );
 }

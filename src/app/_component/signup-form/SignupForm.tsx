@@ -27,17 +27,22 @@ export default function SignupForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="relative space-y-3 overflow-x-hidden">
-        <motion.div className="space-y-3 *:mx-1" animate={{ translateX: `${step * -100}%` }}>
+        <motion.div
+          className="space-y-3 *:mx-1"
+          animate={{ translateX: `${step * -100}%` }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
+        >
           <Step1 form={form} />
         </motion.div>
         <motion.div
           className="space-y-3 *:mx-1 absolute top-0 left-0 right-0"
           animate={{ translateX: `${(1 - step) * 100}%` }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
           style={{ translateX: `${(1 - step) * 100}%` }}
         >
           <Step2 form={form} />
         </motion.div>
-        <ActionButtons form={form} setStep={setStep} />
+        <ActionButtons form={form} step={step} setStep={setStep} />
       </form>
     </Form>
   );
