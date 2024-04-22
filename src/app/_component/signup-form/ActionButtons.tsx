@@ -13,9 +13,9 @@ interface Props {
 }
 
 export default function ActionButtons({ form, step, setStep }: Props) {
-  const handleClickNextStep = () => {
+  const handleClickNextStep = async () => {
     const fields = ["username", "email", "phoneNumber", "role"] as const;
-    form.trigger(fields);
+    await form.trigger(fields);
 
     const isAllFieldsValid = fields.every(fieldName => {
       const fieldState = form.getFieldState(fieldName);
@@ -42,7 +42,7 @@ export default function ActionButtons({ form, step, setStep }: Props) {
       {step === 1 && (
         <>
           <Button type="submit">계정 등록하기</Button>
-          <Button variant="ghost" onClick={handleClickPrevStep}>
+          <Button variant="ghost" type="button" onClick={handleClickPrevStep}>
             이전 단계로
           </Button>
         </>
