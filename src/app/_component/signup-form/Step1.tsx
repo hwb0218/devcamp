@@ -66,8 +66,8 @@ export default function Step1({ form }: Props) {
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                <SelectItem value="m@example.com">관리자</SelectItem>
-                <SelectItem value="m@google.com">일반 사용자</SelectItem>
+                <SelectItem value="admin">관리자</SelectItem>
+                <SelectItem value="user">일반 사용자</SelectItem>
               </SelectContent>
             </Select>
             <FormMessage />
