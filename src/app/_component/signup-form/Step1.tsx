@@ -5,7 +5,7 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/comp
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 
-import { Schema } from "../../../schema/signup";
+import { Schema } from "@/schema/signup";
 
 interface Props {
   form: UseFormReturn<Schema>;

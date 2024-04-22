@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-import { Schema } from "../../../schema/signup";
+import { Schema } from "@/schema/signup";
 
 interface Props {
   form: UseFormReturn<Schema>;
