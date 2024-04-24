@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Dispatch, SetStateAction } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { ArrowRight } from "lucide-react";
