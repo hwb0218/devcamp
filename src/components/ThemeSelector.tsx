@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function ThemeSelector() {
-  const { setTheme, themes } = useTheme();
+  const { setTheme } = useTheme();
 
   return (
     <div className="absolute top-6 right-6">
@@ -26,11 +26,9 @@ export default function ThemeSelector() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          {themes.map(theme => (
-            <DropdownMenuItem key={theme} onClick={() => setTheme(theme)}>
-              {theme}
-            </DropdownMenuItem>
-          ))}
+          <DropdownMenuItem onClick={() => setTheme("light")}>light</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme("dark")}>dark</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme("system")}>system</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
