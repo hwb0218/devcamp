@@ -11,6 +11,9 @@ export default function Page() {
       <Link href="/login">
         <Button variant="secondary">로그인</Button>
       </Link>
+      <Link href="/checkout">
+        <Button>결제페이지</Button>
+      </Link>
     </div>
   );
 }
