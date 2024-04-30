@@ -18,6 +18,7 @@ export default function OrderForm({ orderForm }: Props) {
 
   useEffect(() => {
     setForm(orderForm);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
