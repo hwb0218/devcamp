@@ -24,6 +24,7 @@ const RequiredMarker = () => {
 };
 
 export default function LeftForm() {
+  const [shippingInfo, setShippingInfo] = useState("기존 배송지");
   const [isToggled, setIsToggled] = useState(false);
 
   const coupons = [
@@ -42,9 +43,19 @@ export default function LeftForm() {
           </p>
         </Header>
         <div className="mb-5">
-          <ul className="flex border-b border-stone-300 *:w-40 *:h-14 *:border *:border-stone-300 *:flex *:justify-center *:items-center *:text-sm *:text-zinc-400 *:bg-zinc-100 *:cursor-pointer">
-            <li>기존 배송지</li>
-            <li>신규입력</li>
+          <ul className="flex border-b border-stone-300 *:w-40 *:h-14 *:border *:border-stone-300 *:flex *:justify-center *:items-center *:text-xs *:cursor-pointer">
+            {["기존 배송지", "신규 입력"].map(item => (
+              <li
+                key={item}
+                onClick={() => setShippingInfo(item)}
+                className={cn("relative text-zinc-400 bg-zinc-100", [
+                  shippingInfo === item &&
+                    "text-black bg-white after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-[2px] after:bg-white"
+                ])}
+              >
+                {item}
+              </li>
+            ))}
           </ul>
         </div>
         <div className="flex pb-3">
