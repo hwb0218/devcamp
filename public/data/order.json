@@ -2,9 +2,31 @@
   "shippingAddress": {
     "name": "집",
     "receiver": "아무개",
-    "zipCode": "03706",
-    "mainAddress": "서울특별시 서대문구 성산로7길 89-8 (연희동)",
-    "subAddress": "주식회사 아임웹",
+    "address": "서울특별시 서대문구 성산로7길 89-8 (연희동) 주식회사 아임웹 03706",
     "mainPhoneNumber": "010-1234-5678"
-  }
+  },
+  "coupon": [
+    { "label": "5000원 할인", "value": 5000, "type": "fixed" },
+    { "label": "30% 할인", "value": 30, "type": "percent" }
+  ],
+  "itemList": [
+    { 
+      "brandName": "토마스모어",
+      "itemId": 1,
+      "itemName": "TD5-JP01 탱커 블루종-네이비",
+      "itemImage": "/images/product.jpg",
+      "itemPrice": 107000,
+      "orderCount": 1,
+      "option": "[Size]Medium (100)"
+    },
+    {
+      "brandName": "노티카",
+      "itemId": 2,
+      "itemName": "우븐 스판 풀오버(네이비) NSW3203NAZ",
+      "itemImage": "/images/product2.jpeg",
+      "itemPrice": 59400,
+      "orderCount": 2,
+      "option": "[사이즈]M"
+    }
+  ]
 }
