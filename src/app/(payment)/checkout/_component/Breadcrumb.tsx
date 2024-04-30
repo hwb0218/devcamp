@@ -13,8 +13,6 @@ interface Props {
 export default function Breadcrumb({ list }: Props) {
   const pathname = usePathname();
 
-  console.log(pathname);
-
   return (
     <div className="pt-16 pb-20 flex justify-center">
       <ol className="flex">
