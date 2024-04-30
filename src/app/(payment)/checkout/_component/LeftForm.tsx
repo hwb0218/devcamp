@@ -16,7 +16,7 @@ const Header = ({ children, className }: PropsWithChildren & ComponentProps<"hea
 };
 
 const LeftSection = ({ children }: PropsWithChildren) => {
-  return <h2 className="flex shrink-0 items-center w-[130px] text-sm text-stone-800">{children}</h2>;
+  return <h2 className="flex shrink-0 items-center w-[130px] text-sm">{children}</h2>;
 };
 
 const RequiredMarker = () => {
