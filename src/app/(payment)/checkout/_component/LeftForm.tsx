@@ -112,7 +112,7 @@ export default function LeftForm() {
         <ul className="my-6">
           <li className="flex w-full">
             <div className="mr-5 shrink-0 relative w-[170px] h-[170px]">
-              <Image src="/product.jpg" alt="탱커 블루종" fill quality={85} className="object-cover" />
+              <Image src="/images/product.jpg" alt="탱커 블루종" fill quality={85} className="object-cover" />
             </div>
             <div className="w-full flex flex-col justify-between">
               <div>
