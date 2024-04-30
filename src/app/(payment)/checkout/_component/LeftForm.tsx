@@ -108,17 +108,17 @@ export default function LeftForm() {
                 <Button variant="link" className="px-0">
                   토마스모어
                 </Button>
-                <div>TD5-JP01 탱커 블루종-네이비</div>
-                <div>옵션: Medium (100)</div>
-                <div>
-                  <span>107,000 / 수량 1개</span>
-                  <span>쿠폰적용가: 96,300원</span>
+                <div className="font-bold">TD5-JP01 탱커 블루종-네이비</div>
+                <div className="text-sm">옵션: Medium (100)</div>
+                <div className="text-sm">
+                  <span>107,000원 / 수량 1개</span>
+                  <span className="ml-2 font-bold text-orange-600">쿠폰적용가: 96,300원</span>
                 </div>
               </div>
-              <div>
-                <span>적용 쿠폰</span>
-                <span>30% 할인 쿠폰</span>
-                <span>-10,700원</span>
+              <div className="flex text-sm">
+                <span className="mr-2">적용 쿠폰</span>
+                <span className="flex-1 text-stone-500">30% 할인 쿠폰</span>
+                <span className="ml-2 font-bold">-10,700원</span>
               </div>
             </div>
           </li>
@@ -140,8 +140,8 @@ export default function LeftForm() {
               </SelectContent>
             </Select>
           </div>
-          <div className="flex justify-between">
-            <span className="text-sm">쿠폰 할인 금액</span>
+          <div className="flex justify-between items-center font-bold">
+            <span className="text-xs">쿠폰 할인 금액</span>
             <span className="text-red-500">-27,340원</span>
           </div>
         </div>
@@ -150,11 +150,24 @@ export default function LeftForm() {
         <Header>
           <h2 className="font-bold text-lg">마일리지</h2>
         </Header>
-      </section>
-      <section>
-        <Header>
-          <h2 className="font-bold text-lg">결제방법</h2>
-        </Header>
+        <div className="flex pt-5 pb-10">
+          <LeftSection>사용 금액 입력</LeftSection>
+          <div className="flex items-center flex-wrap">
+            <div className="flex max-w-[300px]">
+              <Input className="w-full" defaultValue={0} />
+              <Button variant="secondary" className="ml-2 mr-4">
+                모두 사용
+              </Button>
+            </div>
+            <span className="py-[7px] text-xs">
+              사용 가능 <em className="font-semibold not-italic">1,234P</em>
+              {" / "}
+              <span className="text-stone-400">
+                보유 <em className="font-semibold not-italic">1,234P</em>
+              </span>
+            </span>
+          </div>
+        </div>
       </section>
     </div>
   );
