@@ -2,6 +2,7 @@
 
 import { useState, useEffect, PropsWithChildren } from "react";
 import { ThemeProvider } from "next-themes";
+import { RecoilRoot as RecoilProvider } from "recoil";
 
 export default function Providers({ children }: PropsWithChildren) {
   const [isMount, setMount] = useState(false);
@@ -15,8 +16,10 @@ export default function Providers({ children }: PropsWithChildren) {
   }
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      {children}
-    </ThemeProvider>
+    <RecoilProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        {children}
+      </ThemeProvider>
+    </RecoilProvider>
   );
 }
