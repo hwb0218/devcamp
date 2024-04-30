@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, PropsWithChildren, ComponentProps } from "react";
+import Image from "next/image";
+import { Fragment, useState, PropsWithChildren, ComponentProps } from "react";
 import { Asterisk } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
@@ -9,7 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Toggle from "@/components/toggle/Toggle";
 
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+
+import { type OrderForm } from "../_lib/getOrderForm";
 
 const Header = ({ children, className }: PropsWithChildren & ComponentProps<"header">) => {
   return <header className={cn("h-[74px] flex justify-between items-center", className)}>{children}</header>;
@@ -23,7 +25,11 @@ const RequiredMarker = () => {
   return <Asterisk className="w-[9px] stroke-orange-600" />;
 };
 
-export default function LeftForm() {
+interface Props {
+  orderForm: OrderForm;
+}
+
+export default function LeftForm({ orderForm }: Props) {
   const [shippingInfo, setShippingInfo] = useState("기존 배송지");
   const [isToggled, setIsToggled] = useState(false);
 
@@ -31,6 +37,10 @@ export default function LeftForm() {
     { label: "5000원 할인", value: 5000, type: "fixed" },
     { label: "30% 할인", value: 30, type: "percent" }
   ];
+
+  const { shippingAddress } = orderForm;
+
+  console.log(shippingAddress.mainPhoneNumber.split("-"));
 
   return (
     <div className="relative w-[55%] min-w-[530px] *:border-t-2 *:border-t-black">
@@ -60,19 +70,21 @@ export default function LeftForm() {
         </div>
         <div className="flex pb-3">
           <LeftSection>배송지명</LeftSection>
-          <Input className="max-w-[370px]" />
+          <Input className="max-w-[370px]" defaultValue={shippingAddress.name} />
         </div>
         <div className="flex pb-3">
           <LeftSection>
             수령인 <RequiredMarker />
           </LeftSection>
-          <Input className="max-w-[370px]" />
+          <Input className="max-w-[370px]" defaultValue={shippingAddress.receiver} />
         </div>
         <div className="flex pb-3">
           <LeftSection>
             배송지 <RequiredMarker />
           </LeftSection>
-          <Input />
+          <Input
+            defaultValue={`${shippingAddress.mainAddress} ${shippingAddress.subAddress} ${shippingAddress.zipCode}`}
+          />
           <Button variant="secondary" className="ml-2">
             배송지 입력
           </Button>
@@ -81,11 +93,21 @@ export default function LeftForm() {
           <LeftSection>
             연락처 <RequiredMarker />
           </LeftSection>
-          <Input className="w-[70px] px-[14px]" maxLength={4} />
-          <span className="text-zinc-400 mx-2">-</span>
-          <Input className="w-[70px] px-[14px]" maxLength={4} />
-          <span className="text-zinc-400 mx-2">-</span>
-          <Input className="w-[70px] px-[14px]" maxLength={4} />
+          {(() => {
+            const phoneNumbers =
+              shippingAddress.mainPhoneNumber !== "" ? shippingAddress.mainPhoneNumber.split("-") : Array(3).fill("");
+
+            return (
+              <>
+                {phoneNumbers.map((num, index, arr) => (
+                  <Fragment key={index}>
+                    <Input className="w-[70px] px-[14px]" defaultValue={num} maxLength={4} />
+                    {arr.length !== index + 1 && <span className="text-zinc-400 mx-2">-</span>}
+                  </Fragment>
+                ))}
+              </>
+            );
+          })()}
         </div>
         <div className="flex pb-3">
           <LeftSection>배송 메모</LeftSection>

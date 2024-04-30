@@ -1,0 +1,10 @@
+{
+  "shippingAddress": {
+    "name": "집",
+    "receiver": "아무개",
+    "zipCode": "03706",
+    "mainAddress": "서울특별시 서대문구 성산로7길 89-8 (연희동)",
+    "subAddress": "주식회사 아임웹",
+    "mainPhoneNumber": "010-1234-5678"
+  }
+}
