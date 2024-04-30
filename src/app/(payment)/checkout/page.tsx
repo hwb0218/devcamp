@@ -1,5 +1,5 @@
-import LeftForm from "./_component/LeftForm";
-import RightForm from "./_component/RightForm";
+import OrderForm from "./_component/OrderForm";
+
 import { getOrderForm } from "./_lib/getOrderForm";
 
 export default async function Page() {
@@ -7,8 +7,7 @@ export default async function Page() {
 
   return (
     <div className="flex justify-between">
-      <LeftForm orderForm={orderForm} />
-      <RightForm />
+      <OrderForm orderForm={orderForm} />
     </div>
   );
 }

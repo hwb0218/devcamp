@@ -11,7 +11,7 @@ const Header = ({ children, className }: PropsWithChildren & ComponentProps<"hea
 
 export default function RightForm() {
   return (
-    <aside className="ml-9 sticky top-[116px] min-w-[370px] max-h-[1200px] flex-1">
+    <aside className="ml-9 sticky top-12 min-w-[370px] max-h-[700px] flex-1">
       <section className="px-[30px] pb-10 border-[3px] border-black">
         <Header className="border-b border-b-stone-300">
           <h2 className="font-bold text-lg">결제 금액</h2>
@@ -67,7 +67,7 @@ export default function RightForm() {
           </ul>
         </div>
         <div className="mt-[30px]">
-          <Button size="lg" className="py-8 w-full text-xl font-bold">
+          <Button type="submit" size="lg" className="py-8 w-full text-xl font-bold">
             CHECK OUT
           </Button>
         </div>
