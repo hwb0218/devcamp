@@ -11,14 +11,14 @@ import { type Coupon as CouponType } from "../_lib/getOrderForm";
 
 export default function LeftForm() {
   const orderForm = useRecoilValue(orderFormAtom);
-  const { shippingAddress, coupon, itemList } = orderForm;
+  const { shippingAddress, coupon, itemList, availableMileage } = orderForm;
   const selectedCoupon = orderForm.selectedCoupon as CouponType;
 
   return (
     <div className="relative w-[55%] min-w-[530px] *:border-t-2 *:border-t-black">
       <ShippingInfo shippingAddress={shippingAddress} />
       <Coupon selectedCoupon={selectedCoupon} coupons={coupon} itemList={itemList} />
-      <Mileage />
+      <Mileage availableMileage={availableMileage} />
     </div>
   );
 }
