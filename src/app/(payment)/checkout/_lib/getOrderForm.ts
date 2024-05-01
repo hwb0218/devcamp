@@ -2,6 +2,7 @@ export interface OrderForm {
   shippingAddress: ShippingAddress;
   coupon: Coupon[];
   itemList: ItemList[];
+  mileage: number;
 }
 
 export interface ShippingAddress {
