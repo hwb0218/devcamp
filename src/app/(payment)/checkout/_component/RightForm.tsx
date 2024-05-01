@@ -8,7 +8,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 export default function RightForm() {
   const orderForm = useRecoilValue(orderFormAtom);
-  const { totalPrice, totalDiscountPrice } = orderForm;
+  const { totalPrice, totalDiscountPrice, mileage } = orderForm;
+
+  const totalPaymentAmount = totalPrice - totalDiscountPrice - Number(mileage);
 
   return (
     <aside className="ml-9 sticky top-12 min-w-[370px] max-h-[700px] flex-1">
@@ -24,12 +26,14 @@ export default function RightForm() {
           <li>
             <span>쿠폰 할인 금액</span>
             <span className="font-semibold text-orange-500">
-              {`${totalDiscountPrice > 0 ? "-" : ""}${totalDiscountPrice.toLocaleString()}원`}
+              {`${totalDiscountPrice > 0 ? "-" : "+"}${totalDiscountPrice.toLocaleString()}원`}
             </span>
           </li>
           <li>
             <span>마일리지 사용</span>
-            <span className="font-semibold">-1,000P</span>
+            <span className="font-semibold">
+              {`${Number(mileage) > 0 ? "-" : "+"}${Number(mileage).toLocaleString()}`}P
+            </span>
           </li>
           <li>
             <span>배송비</span>
@@ -37,7 +41,7 @@ export default function RightForm() {
           </li>
           <li className="items-center">
             <span className="font-bold">총 결제 금액</span>
-            <span className="text-2xl font-bold text-orange-500">245,060원</span>
+            <span className="text-2xl font-bold text-orange-500">{`${totalPaymentAmount.toLocaleString()}원`}</span>
           </li>
         </ul>
         <div className="pt-[25px] border-t border-stone-300">
