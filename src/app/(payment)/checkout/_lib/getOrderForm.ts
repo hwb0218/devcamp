@@ -1,8 +1,8 @@
-export interface OrderForm {
+export interface OrderFormRes {
   shippingAddress: ShippingAddress;
   coupon: Coupon[];
   itemList: ItemList[];
-  mileage: number;
+  availableMileage: number;
 }
 
 export interface ShippingAddress {
@@ -30,7 +30,7 @@ export interface ItemList {
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export const getOrderForm = async (): Promise<OrderForm> => {
+export const getOrderForm = async (): Promise<OrderFormRes> => {
   const res = await fetch(`${BASE_URL}/data/order.json`, { method: "GET", cache: "no-store" });
 
   if (!res.ok) {

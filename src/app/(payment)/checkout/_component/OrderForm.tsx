@@ -1,32 +1,41 @@
 "use client";
 
 import { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
-import { NewItemList, orderFormAtom } from "@/recoil/orderFormAtom";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
+import { NewItemList, orderFormAtom, totalDiscountPriceSelector, totalPriceSelector } from "@/recoil/orderFormAtom";
 
 import LeftForm from "./LeftForm";
 import RightForm from "./RightForm";
-import { type OrderForm } from "../_lib/getOrderForm";
+// import { type OrderForm } from "../_lib/getOrderForm";
+import type { OrderFormRes } from "../_lib/getOrderForm";
 
 import calcDiscountPrice from "@/utils/calcDiscountPrice";
 
 interface Props {
-  orderForm: OrderForm;
+  orderForm: OrderFormRes;
 }
 
 export default function OrderForm({ orderForm }: Props) {
   const setForm = useSetRecoilState(orderFormAtom);
+  const setTotalPrice = useResetRecoilState(totalPriceSelector);
+  const setTotalDiscountPrice = useResetRecoilState(totalDiscountPriceSelector);
 
   useEffect(() => {
-    const selectedCoupon = orderForm.coupon[0];
+    const [firstCoupon] = orderForm.coupon;
 
-    const newItemList = calcDiscountPrice(orderForm.itemList as NewItemList[], selectedCoupon);
+    const newItemList = calcDiscountPrice(orderForm.itemList as NewItemList[], firstCoupon);
 
     setForm({
       ...orderForm,
-      selectedCoupon,
-      itemList: newItemList
+      selectedCoupon: firstCoupon,
+      itemList: newItemList,
+      mileage: "",
+      totalPrice: 0,
+      totalDiscountPrice: 0
     });
+    setTotalPrice();
+    setTotalDiscountPrice();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
