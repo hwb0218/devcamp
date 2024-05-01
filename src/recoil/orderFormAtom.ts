@@ -29,7 +29,7 @@ export const orderFormAtom = atom<OrderFormAtom>({
     selectedCoupon: { label: "", value: 0, type: "" },
     totalPrice: 0,
     totalDiscountPrice: 0,
-    mileage: ""
+    mileage: "0"
   }
 });
 

@@ -24,7 +24,7 @@ export default function Mileage({ availableMileage }: Props) {
         <LeftSection className="h-10 ">사용 금액 입력</LeftSection>
         <div className="flex items-center flex-wrap">
           <div className="flex max-w-[300px]">
-            <Input className="w-full" defaultValue={0} value={mileage} onChange={e => setMileage(e.target.value)} />
+            <Input className="w-full" value={mileage} onChange={e => setMileage(e.target.value)} />
             <Button variant="secondary" className="ml-2 mr-4">
               모두 사용
             </Button>
