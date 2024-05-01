@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 import { cn } from "@/lib/utils";
+import { uuid } from "@/utils/uuid";
+
 import { ShippingAddress } from "../_lib/getOrderForm";
 
 interface Props {
@@ -19,7 +21,6 @@ interface Props {
 }
 
 export default function ShippingInfo({ shippingAddress }: Props) {
-  // const [_, setTel] = useState({ "tel.1": "", "tel.2": "", "tel.3": "" });
   const [shippingInfo, setShippingInfo] = useState("기존 배송지");
   const setForm = useSetRecoilState(orderFormAtom);
 
@@ -95,11 +96,10 @@ export default function ShippingInfo({ shippingAddress }: Props) {
             </LeftSection>
             {Array(3)
               .fill("")
-              .map((item, index, arr) => {
+              .map((_, index, arr) => {
                 const num = shippingAddress.mainPhoneNumber.split("-")[index] ?? "";
-
                 return (
-                  <Fragment key={item}>
+                  <Fragment key={uuid()}>
                     <Input
                       className="w-[70px] px-[14px]"
                       value={num}
@@ -111,18 +111,6 @@ export default function ShippingInfo({ shippingAddress }: Props) {
                   </Fragment>
                 );
               })}
-            {/* {shippingAddress.mainPhoneNumber.split("-").map((num, index, arr) => (
-              <Fragment key={index}>
-                <Input
-                  className="w-[70px] px-[14px]"
-                  value={num}
-                  name="mainPhoneNumber"
-                  onChange={handleChange}
-                  maxLength={4}
-                />
-                {arr.length !== index + 1 && <span className="text-zinc-400 mx-2">-</span>}
-              </Fragment>
-            ))} */}
           </div>
           <div className="flex">
             <LeftSection>배송 메모</LeftSection>
