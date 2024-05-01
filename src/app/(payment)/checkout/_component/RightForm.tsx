@@ -1,15 +1,15 @@
-import { PropsWithChildren, ComponentProps } from "react";
+import { useRecoilValue } from "recoil";
+import { orderFormAtom } from "@/recoil/orderFormAtom";
+
+import Header from "./Header";
 
 import { Button } from "@/components/ui/button";
-
-import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
 
-const Header = ({ children, className }: PropsWithChildren & ComponentProps<"header">) => {
-  return <header className={cn("h-[74px] flex justify-between items-center", className)}>{children}</header>;
-};
-
 export default function RightForm() {
+  const orderForm = useRecoilValue(orderFormAtom);
+  const { totalPrice, totalDiscountPrice } = orderForm;
+
   return (
     <aside className="ml-9 sticky top-12 min-w-[370px] max-h-[700px] flex-1">
       <section className="px-[30px] pb-10 border-[3px] border-black">
@@ -19,11 +19,13 @@ export default function RightForm() {
         <ul className="my-[30px] [&>:not(:first-child)]:mt-4 text-sm *:flex *:justify-between">
           <li>
             <span>총 상품 금액</span>
-            <span className="font-semibold">273,400원</span>
+            <span className="font-semibold">{totalPrice.toLocaleString()}원</span>
           </li>
           <li>
             <span>쿠폰 할인 금액</span>
-            <span className="font-semibold text-orange-500">-27,340원</span>
+            <span className="font-semibold text-orange-500">
+              {`${totalDiscountPrice > 0 ? "-" : ""}${totalDiscountPrice.toLocaleString()}원`}
+            </span>
           </li>
           <li>
             <span>마일리지 사용</span>
