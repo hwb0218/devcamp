@@ -62,8 +62,12 @@ export const totalDiscountPriceSelector = selector({
       return acc + cur.itemPrice * cur.orderCount - cur.discountPrice;
     }, 0);
   },
-  set: ({ get, set }) => {
+  set: ({ get, set }, newValue) => {
     const orderForm = get(orderFormAtom);
+
+    if (typeof newValue === "number") {
+      return set(orderFormAtom, { ...orderForm, totalDiscountPrice: 0 });
+    }
 
     const totalDiscountPrice = orderForm.itemList.reduce((acc, cur) => {
       return acc + cur.itemPrice * cur.orderCount - cur.discountPrice;

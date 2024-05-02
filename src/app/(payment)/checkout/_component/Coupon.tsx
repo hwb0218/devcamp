@@ -1,8 +1,7 @@
-import { useSetRecoilState, useResetRecoilState, useRecoilValue } from "recoil";
-import { orderFormAtom, totalDiscountPriceSelector, type NewItemList } from "@/recoil/orderFormAtom";
-
 import Image from "next/image";
 import { useState } from "react";
+import { useSetRecoilState, useResetRecoilState, useRecoilValue } from "recoil";
+import { orderFormAtom, totalDiscountPriceSelector, type NewItemList } from "@/recoil/orderFormAtom";
 
 import Header from "./shared/Header";
 import LeftSection from "./shared/LeftSection";
@@ -12,8 +11,9 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 import { cn } from "@/lib/utils";
-import type { Coupon } from "../_lib/getOrderForm";
 import calcDiscountPrice from "@/utils/calcDiscountPrice";
+
+import type { Coupon } from "../_lib/getOrderForm";
 
 interface Props {
   selectedCoupon: Coupon;
@@ -26,6 +26,7 @@ export default function Coupon({ selectedCoupon, coupons, itemList }: Props) {
 
   const setForm = useSetRecoilState(orderFormAtom);
   const setTotalDiscountPrice = useResetRecoilState(totalDiscountPriceSelector);
+  const clearTotalDiscountPrice = useSetRecoilState(totalDiscountPriceSelector);
   const totalDiscountPrice = useRecoilValue(totalDiscountPriceSelector);
 
   const handleChangeCoupon = (value: string) => {
@@ -41,6 +42,16 @@ export default function Coupon({ selectedCoupon, coupons, itemList }: Props) {
     setTotalDiscountPrice();
   };
 
+  const handleToggleButton = () => {
+    setIsToggled(prev => !prev);
+
+    if (!isToggled) {
+      return setTotalDiscountPrice();
+    }
+
+    clearTotalDiscountPrice(0);
+  };
+
   return (
     <section>
       <Header className="border-b border-b-stone-300">
@@ -52,7 +63,7 @@ export default function Coupon({ selectedCoupon, coupons, itemList }: Props) {
           isToggled && "bg-orange-500/20"
         )}
       >
-        <Toggle isToggled={isToggled} onToggle={() => setIsToggled(!isToggled)} />
+        <Toggle isToggled={isToggled} onToggle={handleToggleButton} />
         {isToggled ? (
           <span className="ml-2 text-red-500 text-xs font-semibold">쿠폰 할인이 적용됐어요.</span>
         ) : (
