@@ -1,5 +1,3 @@
-"use client";
-
 import { useRecoilValue } from "recoil";
 import { orderFormAtom } from "@/recoil/orderFormAtom";
 
