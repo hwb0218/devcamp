@@ -15,6 +15,12 @@ export default function Mileage({ availableMileage }: Props) {
   const totalPrice = useRecoilValue(totalPriceSelector);
   const [mileage, setMileage] = useRecoilState(mileageSelector);
 
+  const usableMileage = totalPrice * 0.05;
+
+  const handleClickButton = () => {
+    setMileage(String(usableMileage));
+  };
+
   return (
     <section>
       <Header>
@@ -24,16 +30,21 @@ export default function Mileage({ availableMileage }: Props) {
         <LeftSection className="h-10 ">사용 금액 입력</LeftSection>
         <div className="flex items-center flex-wrap">
           <div className="flex max-w-[300px]">
-            <Input className="w-full" value={mileage} onChange={e => setMileage(e.target.value)} />
-            <Button variant="secondary" className="ml-2 mr-4">
+            <Input
+              className="w-full"
+              value={Number(mileage).toLocaleString()}
+              onChange={e => setMileage(e.target.value)}
+            />
+            <Button variant="secondary" onClick={handleClickButton} className="ml-2 mr-4">
               모두 사용
             </Button>
           </div>
           <span className="py-[7px] text-xs">
-            사용 가능 <em className="font-semibold not-italic">{(totalPrice * 0.05).toLocaleString()}P</em>
+            사용 가능 <em className="font-semibold not-italic">{usableMileage.toLocaleString()}P</em>
             {" / "}
             <span className="text-stone-400">
-              보유 <em className="font-semibold not-italic">{availableMileage.toLocaleString()}P</em>
+              보유{" "}
+              <em className="font-semibold not-italic">{(availableMileage - Number(mileage)).toLocaleString()}P</em>
             </span>
           </span>
         </div>
