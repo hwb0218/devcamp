@@ -15,7 +15,12 @@ interface Props {
 export default function Mileage({ availableMileage, totalPrice }: Props) {
   const [mileage, setMileage] = useRecoilState(mileageSelector);
 
-  const usableMileage = totalPrice * 0.05;
+  const usableMileage = () => {
+    if (totalPrice * 0.05 > availableMileage) {
+      return availableMileage.toLocaleString();
+    }
+    return (totalPrice * 0.05).toLocaleString();
+  };
 
   const handleClickButton = () => {
     setMileage(String(usableMileage));
@@ -40,7 +45,7 @@ export default function Mileage({ availableMileage, totalPrice }: Props) {
             </Button>
           </div>
           <span className="py-[7px] text-xs">
-            사용 가능 <em className="font-semibold not-italic">{usableMileage.toLocaleString()}P</em>
+            사용 가능 <em className="font-semibold not-italic">{usableMileage()}P</em>
             {" / "}
             <span className="text-stone-400">
               보유{" "}
