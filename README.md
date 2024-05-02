@@ -10,7 +10,7 @@
 
 `배송 정보 입력폼`
 <p>
- <img width="80%" alt="스크린샷 2024-05-03 오전 8 06 14" src="https://github.com/hwb0218/devcamp/assets/52212226/f8037cad-e277-476f-885f-d7bb8d1d6b0b">
+ <img width="100%" alt="스크린샷 2024-05-03 오전 8 06 14" src="https://github.com/hwb0218/devcamp/assets/52212226/f8037cad-e277-476f-885f-d7bb8d1d6b0b">
 </p>
 
 </br>
@@ -18,7 +18,7 @@
 `쿠폰 및 상품 정보` 
 - 쿠폰은 정액제(원)와 정률제(%) 단위의 할인이 가능합니다.
 <p>
- <img width="80%" alt="스크린샷 2024-05-03 오전 8 06 24" src="https://github.com/hwb0218/devcamp/assets/52212226/973b95f0-c31c-4982-8780-d166387e012a">
+ <img width="100%" alt="스크린샷 2024-05-03 오전 8 06 24" src="https://github.com/hwb0218/devcamp/assets/52212226/973b95f0-c31c-4982-8780-d166387e012a">
 </p>
 
 </br>
@@ -26,7 +26,7 @@
 `마일리지(포인트)`
 - 마일리지 사용시 최종 결제 금액에서 차감됩니다.
 <p>
-  <img width="80%" alt="스크린샷 2024-05-03 오전 8 06 33" src="https://github.com/hwb0218/devcamp/assets/52212226/6c373bdb-a7b4-4ca6-bd28-29ddae6fe195">
+  <img width="100%" alt="스크린샷 2024-05-03 오전 8 06 33" src="https://github.com/hwb0218/devcamp/assets/52212226/6c373bdb-a7b4-4ca6-bd28-29ddae6fe195">
 </p>
 
 </br>
