@@ -1,5 +1,5 @@
-import { useRecoilValue, useRecoilState } from "recoil";
-import { mileageSelector, totalPriceSelector } from "@/recoil/orderFormAtom";
+import { useRecoilState } from "recoil";
+import { mileageSelector } from "@/recoil/orderFormAtom";
 
 import Header from "./shared/Header";
 import LeftSection from "./shared/LeftSection";
@@ -9,10 +9,10 @@ import { Input } from "@/components/ui/input";
 
 interface Props {
   availableMileage: number;
+  totalPrice: number;
 }
 
-export default function Mileage({ availableMileage }: Props) {
-  const totalPrice = useRecoilValue(totalPriceSelector);
+export default function Mileage({ availableMileage, totalPrice }: Props) {
   const [mileage, setMileage] = useRecoilState(mileageSelector);
 
   const usableMileage = totalPrice * 0.05;

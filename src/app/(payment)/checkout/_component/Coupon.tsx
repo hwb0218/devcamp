@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import { useSetRecoilState, useResetRecoilState, useRecoilValue } from "recoil";
+import { useSetRecoilState, useResetRecoilState } from "recoil";
 import { orderFormAtom, totalDiscountPriceSelector, type NewItemList } from "@/recoil/orderFormAtom";
 
 import Header from "./shared/Header";
@@ -19,15 +19,15 @@ interface Props {
   selectedCoupon: Coupon;
   coupons: Coupon[];
   itemList: NewItemList[];
+  totalDiscountPrice: number;
 }
 
-export default function Coupon({ selectedCoupon, coupons, itemList }: Props) {
+export default function Coupon({ selectedCoupon, coupons, itemList, totalDiscountPrice }: Props) {
   const [isToggled, setIsToggled] = useState(true);
 
   const setForm = useSetRecoilState(orderFormAtom);
   const setTotalDiscountPrice = useResetRecoilState(totalDiscountPriceSelector);
   const clearTotalDiscountPrice = useSetRecoilState(totalDiscountPriceSelector);
-  const totalDiscountPrice = useRecoilValue(totalDiscountPriceSelector);
 
   const handleChangeCoupon = (value: string) => {
     const selectedCoupon = JSON.parse(value) as Coupon;
