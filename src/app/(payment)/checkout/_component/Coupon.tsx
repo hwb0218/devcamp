@@ -72,7 +72,12 @@ export default function Coupon({ selectedCoupon, coupons, itemList, totalDiscoun
       </div>
       <ul className="my-6 [&>:not(:first-child)]:mt-8">
         {itemList.map(item => {
-          const couponDiscountPrice = item.itemPrice * item.orderCount - item.discountPrice;
+          const couponDiscountPrice =
+            selectedCoupon.type === "fixed"
+              ? item.itemPrice * item.orderCount - item.discountPrice
+              : item.itemPrice * item.orderCount - item.discountPrice * item.orderCount;
+          const discountPricePerCount =
+            selectedCoupon.type === "fixed" ? item.discountPrice : item.discountPrice * item.orderCount;
           return (
             <li key={item.itemId} className="flex w-full">
               <div className="mr-5 shrink-0 relative w-[170px] h-[170px]">
@@ -89,7 +94,7 @@ export default function Coupon({ selectedCoupon, coupons, itemList, totalDiscoun
                     <span>{`${item.itemPrice.toLocaleString()} / 수량 ${item.orderCount}개`}</span>
                     {isToggled && (
                       <span className="ml-2 font-bold text-orange-600">
-                        쿠폰적용가: {item.discountPrice?.toLocaleString()}
+                        쿠폰적용가: {couponDiscountPrice?.toLocaleString()}
                       </span>
                     )}
                   </div>
@@ -98,7 +103,7 @@ export default function Coupon({ selectedCoupon, coupons, itemList, totalDiscoun
                   <span className="mr-2">적용 쿠폰</span>
                   {isToggled && <span className="text-stone-500">{selectedCoupon?.label}</span>}
                   <span className={cn("ml-auto text-stone-500", isToggled && "text-black font-bold")}>
-                    {isToggled ? `-${couponDiscountPrice.toLocaleString()}원` : "적용 안함"}
+                    {isToggled ? `-${discountPricePerCount.toLocaleString()}원` : "적용 안함"}
                   </span>
                 </div>
               </div>
