@@ -5,12 +5,35 @@ import Header from "./shared/Header";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
+
+const SUB_LABEL = [
+  "(필수) 개인정보 수집/이용 동의",
+  "(필수) 개인정보 제3자 제공 동의",
+  "(필수) 결제대행 서비스 이용약관"
+];
 
 export default function RightForm() {
+  const [checkedList, setCheckedList] = useState<string[]>([]);
   const orderForm = useRecoilValue(orderFormAtom);
   const { totalPrice, totalDiscountPrice, mileage } = orderForm;
 
   const totalPaymentAmount = totalPrice - totalDiscountPrice - Number(mileage);
+
+  const toggleAllcheckBox = () => {
+    if (checkedList.length === SUB_LABEL.length) {
+      setCheckedList([]);
+    } else {
+      setCheckedList(SUB_LABEL);
+    }
+  };
+
+  const toggleCheckbox = (label: string) => {
+    const filteredCheckList = checkedList.includes(label)
+      ? checkedList.filter(checkedItem => checkedItem !== label)
+      : [...checkedList, label];
+    setCheckedList(filteredCheckList);
+  };
 
   return (
     <aside className="ml-9 sticky top-12 min-w-[370px] max-h-[700px] flex-1">
@@ -45,31 +68,19 @@ export default function RightForm() {
           </li>
         </ul>
         <div className="pt-[25px] border-t border-stone-300">
-          <div className="flex items-center">
-            <Checkbox id="0" className="mr-2" />
-            <label htmlFor="0" className="font-medium">
-              주문 내용을 확인했으며, 아래 내용에 모두 동의합니다.
-            </label>
+          <div className="flex items-center" onClick={toggleAllcheckBox}>
+            <Checkbox checked={checkedList.length === SUB_LABEL.length && checkedList.length > 0} className="mr-2" />
+            <label className="font-medium">주문 내용을 확인했으며, 아래 내용에 모두 동의합니다.</label>
           </div>
           <ul className="*:flex *:items-center *:text-sm *:font-medium *:mt-2">
-            <li>
-              <Checkbox id="1" className="mr-2" />
-              <label htmlFor="1" className="text-stone-500">
-                (필수) 개인정보 수집/이용 동의
-              </label>
-            </li>
-            <li>
-              <Checkbox id="2" className="mr-2" />
-              <label htmlFor="2" className="text-stone-500">
-                (필수) 개인정보 제3자 제공 동의
-              </label>
-            </li>
-            <li>
-              <Checkbox id="3" className="mr-2" />
-              <label htmlFor="3" className="text-stone-500">
-                (필수) 결제대행 서비스 이용약관
-              </label>
-            </li>
+            {SUB_LABEL.map(label => {
+              return (
+                <li key={label} onClick={() => toggleCheckbox(label)}>
+                  <Checkbox checked={checkedList.includes(label)} className="mr-2" />
+                  <label className="text-stone-500">{label}</label>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className="mt-[30px]">
