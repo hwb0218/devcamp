@@ -19,11 +19,12 @@ export default function Mileage({ availableMileage, totalPrice }: Props) {
     if (totalPrice * 0.05 > availableMileage) {
       return availableMileage.toLocaleString();
     }
+
     return (totalPrice * 0.05).toLocaleString();
   };
 
   const handleClickButton = () => {
-    setMileage(String(usableMileage));
+    setMileage(String(usableMileage()));
   };
 
   return (
