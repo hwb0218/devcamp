@@ -6,6 +6,7 @@ import Header from "./shared/Header";
 import { Button } from "@/components/ui/button";
 
 import useTossPayment from "../_hook/useTossPayment";
+import Payment from "./Payment";
 
 export default function RightForm() {
   const { paymentReady, handleClickPayment } = useTossPayment();
@@ -47,6 +48,7 @@ export default function RightForm() {
             <span className="text-2xl font-bold text-orange-500">{`${totalPaymentAmount.toLocaleString()}원`}</span>
           </li>
         </ul>
+        <Payment />
         <div className="mx-[30px]">
           <Button
             type="submit"

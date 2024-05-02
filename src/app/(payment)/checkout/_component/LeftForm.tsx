@@ -4,7 +4,6 @@ import { orderFormAtom } from "@/recoil/orderFormAtom";
 import ShippingInfo from "./ShippingInfo";
 import Coupon from "./Coupon";
 import Mileage from "./Mileage";
-import Payment from "./Payment";
 
 import { type Coupon as CouponType } from "../_lib/getOrderForm";
 
@@ -23,7 +22,6 @@ export default function LeftForm() {
         totalDiscountPrice={totalDiscountPrice}
       />
       <Mileage availableMileage={availableMileage} totalPrice={totalPrice} />
-      <Payment />
     </div>
   );
 }
