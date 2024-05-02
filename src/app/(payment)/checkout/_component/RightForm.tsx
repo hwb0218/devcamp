@@ -9,9 +9,8 @@ import useTossPayment from "../_hook/useTossPayment";
 import Payment from "./Payment";
 
 export default function RightForm() {
-  const { paymentReady, handleClickPayment } = useTossPayment();
-
   const orderForm = useRecoilValue(orderFormAtom);
+  const { paymentReady, handleClickPayment } = useTossPayment(orderForm);
   const { totalPrice, totalDiscountPrice, mileage } = orderForm;
 
   const totalPaymentAmount = totalPrice - totalDiscountPrice - Number(mileage);

@@ -1,16 +1,15 @@
-import { useState, useRef } from "react";
 import { useAsync } from "react-use";
+import { useState, useEffect, useRef } from "react";
 
 import { PaymentWidgetInstance, loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
-import { useRecoilValue } from "recoil";
-import { orderFormAtom } from "@/recoil/orderFormAtom";
+
+import { type OrderFormAtom } from "@/recoil/orderFormAtom";
 
 const CLIENT_KEY = process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY as string;
 const CUSTOMER_KEY = process.env.NEXT_PUBLIC_TOSS_CUSTOMER_KEY as string;
 
-export default function useTossPayment() {
+export default function useTossPayment(orderForm: OrderFormAtom) {
   const [paymentReady, setPaymentReady] = useState(false);
-  const orderForm = useRecoilValue(orderFormAtom);
   const { totalPrice, totalDiscountPrice, mileage, itemList } = orderForm;
   const totalPaymentAmount = totalPrice - totalDiscountPrice - Number(mileage);
 
@@ -36,6 +35,16 @@ export default function useTossPayment() {
     } catch (error) {
       console.error("Error fetching payment widget:", error);
     }
+  }, []);
+
+  useEffect(() => {
+    const paymentMethodsWidget = paymentMethodsWidgetRef.current;
+
+    if (paymentMethodsWidget == null) {
+      return;
+    }
+
+    paymentMethodsWidget.updateAmount(totalPaymentAmount);
   }, [totalPaymentAmount]);
 
   const handleClickPayment = async () => {
