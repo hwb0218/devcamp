@@ -4,8 +4,8 @@ import { orderFormAtom, totalDiscountPriceSelector, type NewItemList } from "@/r
 import Image from "next/image";
 import { useState } from "react";
 
-import Header from "./Header";
-import LeftSection from "./LeftSection";
+import Header from "./shared/Header";
+import LeftSection from "./shared/LeftSection";
 
 import Toggle from "@/components/toggle/Toggle";
 import { Button } from "@/components/ui/button";

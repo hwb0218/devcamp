@@ -1,8 +1,8 @@
 import { useRecoilValue, useRecoilState } from "recoil";
 import { mileageSelector, totalPriceSelector } from "@/recoil/orderFormAtom";
 
-import Header from "./Header";
-import LeftSection from "./LeftSection";
+import Header from "./shared/Header";
+import LeftSection from "./shared/LeftSection";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 
-import LeftSection from "./LeftSection";
-import RequiredMarker from "./RequiredMarker";
+import LeftSection from "./shared/LeftSection";
+import RequiredMarker from "./shared/RequiredMarker";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";

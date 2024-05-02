@@ -2,10 +2,10 @@ import { useState, Fragment, ChangeEvent } from "react";
 import { useSetRecoilState } from "recoil";
 import { orderFormAtom } from "@/recoil/orderFormAtom";
 
-import Header from "./Header";
-import LeftSection from "./LeftSection";
+import Header from "./shared/Header";
+import LeftSection from "./shared/LeftSection";
 import NewShippingInfo from "./NewShippingInfo";
-import RequiredMarker from "./RequiredMarker";
+import RequiredMarker from "./shared/RequiredMarker";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
