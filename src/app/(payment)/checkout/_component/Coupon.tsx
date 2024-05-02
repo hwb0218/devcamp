@@ -1,7 +1,12 @@
 import Image from "next/image";
 import { useState } from "react";
-import { useSetRecoilState, useResetRecoilState } from "recoil";
-import { orderFormAtom, totalDiscountPriceSelector, type NewItemList } from "@/recoil/orderFormAtom";
+import { useSetRecoilState, useResetRecoilState, useRecoilValue } from "recoil";
+import {
+  orderFormAtom,
+  totalDiscountPriceSelector,
+  totalItemLengthSelector,
+  type NewItemList
+} from "@/recoil/orderFormAtom";
 
 import Header from "./shared/Header";
 import LeftSection from "./shared/LeftSection";
@@ -25,6 +30,7 @@ interface Props {
 export default function Coupon({ selectedCoupon, coupons, itemList, totalDiscountPrice }: Props) {
   const [isToggled, setIsToggled] = useState(true);
 
+  const totalItemLength = useRecoilValue(totalItemLengthSelector);
   const setForm = useSetRecoilState(orderFormAtom);
   const setTotalDiscountPrice = useResetRecoilState(totalDiscountPriceSelector);
   const clearTotalDiscountPrice = useSetRecoilState(totalDiscountPriceSelector);
@@ -55,7 +61,7 @@ export default function Coupon({ selectedCoupon, coupons, itemList, totalDiscoun
   return (
     <section>
       <Header className="border-b border-b-stone-300">
-        <h2 className="font-bold text-lg">쿠폰 사용 및 상품 정보 / 총 1개</h2>
+        <h2 className="font-bold text-lg">쿠폰 사용 및 상품 정보 / 총 {totalItemLength}개</h2>
       </Header>
       <div
         className={cn(
@@ -72,6 +78,7 @@ export default function Coupon({ selectedCoupon, coupons, itemList, totalDiscoun
       </div>
       <ul className="my-6 [&>:not(:first-child)]:mt-8">
         {itemList.map(item => {
+          //TODO: recoil selector로 로직 분리
           const couponDiscountPrice =
             selectedCoupon.type === "fixed"
               ? item.itemPrice * item.orderCount - item.discountPrice

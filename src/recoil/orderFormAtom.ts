@@ -33,6 +33,15 @@ export const orderFormAtom = atom<OrderFormAtom>({
   }
 });
 
+export const totalItemLengthSelector = selector({
+  key: "totalItemLengthSelector",
+  get: ({ get }) => {
+    const { itemList } = get(orderFormAtom);
+
+    return itemList.length;
+  }
+});
+
 export const totalPriceSelector = selector({
   key: "totalPriceSelector",
   get: ({ get }) => {
