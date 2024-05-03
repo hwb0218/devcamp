@@ -1,4 +1,22 @@
-# [Devcamp](https://devcamp-mocha.vercel.app/)
+# Devcamp
+
+https://devcamp-mocha.vercel.app/
+
+`npm`
+
+```Shell
+git clone git@github.com:hwb0218/devcamp.git
+npm install
+npm run dev
+```  
+
+`yarn`
+
+```Shell
+git clone git@github.com:hwb0218/devcamp.git
+yarn install
+yarn run dev
+```  
 
 ### 1주차 로그인 & 회원가입
 
